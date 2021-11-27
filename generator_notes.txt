@@ -1,0 +1,11 @@
+Fractal Terrain Generation process:
+	Noise Generation
+		create heightmap
+			Notes:
+				have terrain be randomly colored based off of height?
+		Perlin or simplex noise?
+		Ridged noise?
+			Note: if gotten to work, create bodies of water?
+	Alternatively, diamond-square technique
+	Noise generation method gets more detail, diamond-square technique is faster and simpler
+	
