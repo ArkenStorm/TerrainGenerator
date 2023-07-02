@@ -1,0 +1,68 @@
+# sample noisy terrain @ terrain_dimension=25
+# terrain_map = generate_2d_noise(terrain_range, 7, 3)
+
+# cool noise @ terrain_dimension=25
+# terrain_map = generate_2d_noise(terrain_range, 43, 7)
+
+# cool mountainous thing
+# terrain_map = generate_ridged_noise(terrain_range, 100, 4)
+
+# kind of ridged noise
+# terrain_map = generate_ridged_noise(terrain_range, 75, 1)
+
+# sample noisy terrain @ terrain_dimension=100
+# terrain_map = generate_2d_noise(terrain_range, 25, 3)
+
+# sample ridged * mountainous
+# mountain = generate_2d_noise(terrain_range, 25, 3)
+# ridges = generate_ridged_noise(terrain_range, 75, 1, 0.2)
+# terrain_map = mountain * ridges
+
+# more octaves on ridged noise
+# terrain_map = generate_ridged_noise(terrain_range, 75, 5)
+
+# sample ridged * mountainous (more ridged octaves); mostly flat with spikes
+# mountain = generate_2d_noise(terrain_range, 25, 3)
+# ridges = generate_ridged_noise(terrain_range, 75, 5)
+# terrain_map = mountain * ridges
+
+# sample ridged + mountainous (more ridged octaves); grand canyon-esque, doesn't look quite right
+# mountain = generate_2d_noise(terrain_range, 25, 3)
+# ridges = generate_ridged_noise(terrain_range, 75, 5)
+# terrain_map = mountain + ridges
+
+# combine two layers of mountain/ridges
+# mountain = generate_2d_noise(terrain_range, 25, 3)
+# ridges = generate_ridged_noise(terrain_range, 75, 5)
+# mountain2 = generate_2d_noise(terrain_range, 25, 3)
+# ridges2 = generate_ridged_noise(terrain_range, 75, 5)
+# terrain_map = (mountain * (ridges / 5)) + (mountain2 + (ridges2 / 5))
+
+# sample mountainous - (ridged / something) (more ridged octaves);
+# mountain = generate_2d_noise(terrain_range, 25, 3)
+# ridges = generate_ridged_noise(terrain_range, 75, 5)
+# terrain_map = mountain - (ridges / 4)
+
+# sample cool terrain @ dim 100
+# mountain = generate_2d_noise(terrain_range, 57, 3)
+# ridges = generate_ridged_noise(terrain_range, 50, 1, 0.2)
+# ridge_factor = (mountain + (ridges / 2)) / 2
+#
+# terrain_map = generate_2d_noise(terrain_range, 55, 5)
+# terrain_map *= ridge_factor
+
+# good ridge combination @ dim 1000
+ridges = generate_ridged_noise(terrain_range, 205) * 100
+basic_terrain = generate_2d_noise(terrain_range, 555, 8) * 1000
+terrain_map = basic_terrain - ridges
+
+# fairly realistic @ dim 1000
+terrain_map = generate_2d_noise(terrain_range, 357, 15)
+terrain_map *= generate_2d_noise(terrain_range, 750, 14) * 1000
+terrain_map -= generate_ridged_noise(terrain_range, 157) * 10
+
+# cool multiplied ridged generation
+terrain_map = generate_2d_noise(terrain_range, 357, 15)
+terrain_map *= generate_ridged_noise(terrain_range, 157)
+terrain_map += generate_2d_noise(terrain_range, 750, 14)
+terrain_map *= 1000
